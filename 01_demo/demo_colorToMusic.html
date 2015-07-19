@@ -1,0 +1,234 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./reset.css">
+        <style>
+            @keyframes fromTop{
+                from{
+                    opacity: 0;
+                    transform: translateY(-15px);
+                }
+                to{
+                    opacity: 0.9;
+                    transform: translateY(0px);
+                }
+            }
+            .fromTop{
+                animation: fromTop .5s forwards;
+            }
+            
+            html,body{
+                width: 100%;
+                height: 100%;
+            }
+            section#svgWrapper{
+                width: 100%;
+                height: 100%;
+                background-color: rgb(255,254,250);
+            }
+            svg{
+                width: 850px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+            polygon{
+                transition: transform .1s ease-in-out;
+            }
+            polygon:hover{
+                cursor: pointer;
+                transform: translateX(10px);
+                transform-origin: left;
+            }
+            
+            button{
+                position: absolute;
+            }
+            #backToMain div{
+                position: absolute;
+                top: 2%;
+                left: 1%;
+                width: 50px;
+                height: 50px;
+                background-color: transparent;
+                border: transparent;
+                background-image: url(./return.png);
+                background-size: cover;
+                
+                cursor: pointer;
+            }
+            a:active{
+                border: transparent;
+            }
+            
+            #musicToColor{
+                position: absolute;
+                width: 40px;
+                height: 150px;
+                top: 40%;
+                left: 0;
+                font-size: 15px;
+                font-weight: 100;
+            }
+            #musicToColor button{
+                width: 40px;
+                height: 150px;
+                top: 0;
+                left: 0;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border: transparent;
+                background-color: rgb(50,50,50);
+                transition: all .2s ease-in;
+            }
+            #musicToColor button:hover{
+                opacity: 0.7;
+                cursor: pointer;
+                transform: scaleX(1.2);
+                transform-origin: left;
+            }
+            .verticalText{
+                position: absolute;
+                top: 80%;
+                left: 60%;
+                color: #ffffff;
+                transform: rotate(-90deg);
+                transform-origin: left top 0;
+                float: left;
+            }
+            #playerModal{
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 580px;
+                height: 580px;
+                border-radius: 50%;
+                border: 5px solid #BA68C8;
+                border-style:outset;
+                background-color: #BA68C8;
+                z-index: 100;
+                
+                display: none;
+                opacity: 0;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <a id="backToMain" href="./demo_main.html">
+            <div></div>
+        </a>
+        
+        <a id="musicToColor" href="./demo_musicToColor.html">
+            <button></button>
+            <span class="verticalText">music&rarr;color</span>
+        </a>
+        
+        <section id="playerModal">
+            
+        </section>
+        
+        <section id="svgWrapper">
+
+            <svg version="1.1" id="&#xB808;&#xC774;&#xC5B4;_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 x="0px" y="0px" viewBox="-178.574 90.258 851.339 587.131" style="enable-background:new -178.574 90.258 851.339 587.131;"
+                 xml:space="preserve">
+            <g id="&#xB808;&#xC774;&#xC5B4;_1_1_" style="display:none;">
+            </g>
+            <g>
+                <g id="XMLID_1_">
+                    <g>
+                        <polygon style="fill:#EEEEEE;" points="629,436.8 629,463.24 553.5,497.02 553,497.02 553,475.24 553,403.24 553.5,403.02 			"/>
+                        <polygon style="fill:#616161;" points="629,180.02 629,252.8 553.5,219.02 553,219.02 553,146.02 			"/>
+                        <polygon style="fill:#757575;" points="553,219.02 553.5,219.02 629,252.8 629,277.24 553.5,311.02 553,311.02 553,291.24 			"/>
+                        <polygon style="fill:#BDBDBD;" points="553,311.02 553.5,311.02 629,277.24 629,363.8 553.5,330.02 553,330.02 			"/>
+                        <polygon style="fill:#E0E0E0;" points="553.5,403.02 553,403.24 553,383.8 553,330.02 553.5,330.02 629,363.8 629,436.8 			"/>
+                        <polygon style="fill:#F5F5F5;" points="553,497.02 553.5,497.02 629,463.24 629,536.02 553.23,569.9 553,569.8 			"/>
+                        <polygon style="fill:#6D4C41;" points="477.5,536.02 553,569.8 553,570 553,637 477,603.02 477,555.02 477,536.02 			"/>
+                        <polygon style="fill:#EFEBE9;" points="553,219.02 553,291.24 477.5,325.02 477,325.02 477,300.24 477,273.8 477,253.02 			"/>
+                        <polygon style="fill:#D7CCC8;" points="477.5,325.02 553,291.24 553,311.02 553,330.02 553,383.8 477.5,350.02 477,350.02 
+                            477,325.02 			"/>
+                        <polygon style="fill:#BCAAA4;" points="477.5,350.02 553,383.8 553,403.24 477.5,437.02 477,437.02 477,385.8 477,350.02 			"/>
+                        <polygon style="fill:#A1887F;" points="477.5,437.02 553,403.24 553,475.24 477.5,509.02 477,509.02 477,488.24 477,456.8 
+                            477,437.02 			"/>
+                        <polygon style="fill:#8D6E63;" points="477.5,509.02 553,475.24 553,497.02 553,569.8 477.5,536.02 477,536.02 477,509.02 			"/>
+                        <polygon style="fill:#FFF3E0;" points="477,536.02 477,555.02 401,589 401,522.24 401.5,522.02 477,488.24 477,509.02 			"/>
+                        <polygon style="fill:#FFB74D;" points="477,350.02 477,385.8 401.5,352.02 401,352.02 401,334.24 401.5,334.02 477,300.24 
+                            477,325.02 			"/>
+                        <polygon style="fill:#FB8C00;" points="477,253.02 477,273.8 401.5,240.02 401,240.02 401,168.02 477,202.02 			"/>
+                        <polygon style="fill:#FFA726;" points="401.5,240.02 477,273.8 477,300.24 401.5,334.02 401,334.24 401,311.8 401,240.02 			"/>
+                        <polygon style="fill:#FFCC80;" points="401.5,352.02 477,385.8 477,437.02 477,456.8 401.5,423.02 401,422.8 401,352.02 			"/>
+                        <polygon style="fill:#FFE0B2;" points="401.5,423.02 477,456.8 477,488.24 401.5,522.02 401,522.24 401,495.8 401,422.8 			"/>
+                        <polygon style="fill:#FFEE58;" points="401,495.8 401,522.24 325.5,556.02 325,555.8 325,462.24 325.5,462.02 			"/>
+                        <polygon style="fill:#FFF176;" points="401,422.8 401,495.8 325.5,462.02 325,462.24 325,389.24 325.5,389.02 			"/>
+                        <polygon style="fill:#FFF9C4;" points="401,311.8 401,334.24 325.5,368.02 325,367.8 325,278.24 325.5,278.02 			"/>
+                        <polygon style="fill:#FFFDE7;" points="401,240.02 401,311.8 325.5,278.02 325,278.24 325,206.02 			"/>
+                        <polygon style="fill:#FFF59D;" points="325.5,368.02 401,334.24 401,352.02 401,422.8 325.5,389.02 325,389.24 325,367.8 			"/>
+                        <polygon style="fill:#FDD835;" points="325.5,556.02 401,522.24 401,589 401,589.02 325,623 325,555.8 			"/>
+                        <polygon style="fill:#F1F8E9;" points="325,555.8 325,623 249,589.02 249,522.24 249.5,522.02 			"/>
+                        <polygon style="fill:#AED581;" points="325,367.8 325,389.24 249.5,423.02 249,422.8 249,334.24 249.5,334.02 			"/>
+                        <polygon style="fill:#7CB342;" points="325,206.02 325,278.24 249.5,312.02 249,311.8 249,239.02 			"/>
+                        <polygon style="fill:#9CCC65;" points="249.5,312.02 325,278.24 325,367.8 249.5,334.02 249,334.24 249,311.8 			"/>
+                        <polygon style="fill:#C5E1A5;" points="249.5,423.02 325,389.24 325,462.24 249.5,496.02 249,495.8 249,422.8 			"/>
+                        <polygon style="fill:#DCEDC8;" points="249.5,496.02 325,462.24 325,555.8 249.5,522.02 249,522.24 249,495.8 			"/>
+                        <polygon style="fill:#80CBC4;" points="249,334.24 249,422.8 173.5,389.02 173,389.02 173,368.24 173.5,368.02 			"/>
+                        <polygon style="fill:#E0F2F1;" points="249,239.02 249,311.8 173.5,278.02 173,278.02 173,256.24 173,205.02 			"/>
+                        <polygon style="fill:#B2DFDB;" points="173.5,278.02 249,311.8 249,334.24 173.5,368.02 173,368.24 173,348.8 173,278.02 			"/>
+                        <polygon style="fill:#4DB6AC;" points="173.5,389.02 249,422.8 249,495.8 173.5,462.02 173,462.02 173,440.24 173,389.02 			"/>
+                        <polygon style="fill:#26A69A;" points="173.5,462.02 249,495.8 249,522.24 173.5,556.02 173,556.02 173,529.8 173,462.02 			"/>
+                        <polygon style="fill:#00897B;" points="173.5,556.02 249,522.24 249,589.02 173,623 173,602 173,556.02 			"/>
+                        <polygon style="fill:#1E88E5;" points="173,205.02 173,256.24 97.5,290.02 97,290.02 97,268.24 97,238.8 97,218.02 173,184.02 
+                                        "/>
+                        <polygon style="fill:#42A5F5;" points="97,290.02 97.5,290.02 173,256.24 173,278.02 173,348.8 97.5,315.02 97,315.02 			"/>
+                        <polygon style="fill:#64B5F6;" points="97,315.02 97.5,315.02 173,348.8 173,368.24 97.5,402.02 97,402.02 97,365.8 			"/>
+                        <polygon style="fill:#90CAF9;" points="97,402.02 97.5,402.02 173,368.24 173,389.02 173,440.24 97.5,474.02 97,474.02 
+                            97,454.24 97,422.8 			"/>
+                        <polygon style="fill:#BBDEFB;" points="97,474.02 97.5,474.02 173,440.24 173,462.02 173,529.8 97.5,496.02 97,496.02 			"/>
+                        <polygon style="fill:#E3F2FD;" points="97.5,496.02 173,529.8 173,556.02 173,602 97,568.02 97,521.02 97,496.02 			"/>
+                        <polygon style="fill:#3949AB;" points="97,496.02 97,521.02 21,555 21,488.24 21.5,488.02 97,454.24 97,474.02 			"/>
+                        <polygon style="fill:#9FA8DA;" points="97,315.02 97,365.8 21.5,332.02 21,332.02 21,302.24 21.5,302.02 97,268.24 97,290.02 			
+                            "/>
+                        <polygon style="fill:#E8EAF6;" points="97,218.02 97,238.8 21.5,205.02 21,205.02 21,133.02 97,167.02 			"/>
+                        <polygon style="fill:#C5CAE9;" points="21.5,205.02 97,238.8 97,268.24 21.5,302.02 21,302.24 21,276.8 21,205.02 			"/>
+                        <polygon style="fill:#7986CB;" points="21.5,332.02 97,365.8 97,402.02 97,422.8 21.5,389.02 21,388.8 21,332.02 			"/>
+                        <polygon style="fill:#5C6BC0;" points="21.5,389.02 97,422.8 97,454.24 21.5,488.02 21,488.24 21,460.8 21,388.8 			"/>
+                        <polygon style="fill:#E1BEE7;" points="21,460.8 21,488.24 -54.5,522.02 -55,521.8 -55,427.24 -54.5,427.02 			"/>
+                        <polygon style="fill:#CE93D8;" points="21,388.8 21,460.8 -54.5,427.02 -55,427.24 -55,355.24 -54.5,355.02 			"/>
+                        <polygon style="fill:#AB47BC;" points="21,276.8 21,302.24 -54.5,336.02 -55,335.8 -55,243.24 -54.5,243.02 			"/>
+                        <polygon style="fill:#8E24AA;" points="21,205.02 21,276.8 -54.5,243.02 -55,243.24 -55,171.02 			"/>
+                        <polygon id="BA68C8" style="fill:#BA68C8;" points="-54.5,336.02 21,302.24 21,332.02 21,388.8 -54.5,355.02 -55,355.24 -55,335.8 			"/>
+                        <polygon style="fill:#F3E5F5;" points="21,555 21,555.02 -55,589 -55,521.8 -54.5,522.02 21,488.24 			"/>
+                        <polygon style="fill:#FFEBEE;" points="-55,171.02 -55,243.24 -130.5,277.02 -131,277.02 -131,205.02 			"/>
+                        <polygon style="fill:#FFCDD2;" points="-131,277.02 -130.5,277.02 -55,243.24 -55,335.8 -130.5,302.02 -131,302.02 			"/>
+                        <polygon style="fill:#EF9A9A;" points="-131,302.02 -130.5,302.02 -55,335.8 -55,355.24 -130.5,389.02 -131,389.02 			"/>
+                        <polygon style="fill:#E57373;" points="-130.5,389.02 -55,355.24 -55,427.24 -130.5,461.02 -131,461.02 -131,389.02 			"/>
+                        <polygon style="fill:#EF5350;" points="-130.5,461.02 -55,427.24 -55,521.8 -130.5,488.02 -131,488.02 -131,461.02 			"/>
+                        <polygon style="fill:#E53935;" points="-130.5,488.02 -55,521.8 -55,589 -131,555.02 -131,488.02 			"/>
+                    </g>
+                    <g>
+                    </g>
+                </g>
+            </g>
+            </svg>
+           
+       </section>
+
+        <script>
+            var polygon = document.getElementsByTagName("polygon");
+            //demo용
+            var testPoly = document.getElementById("BA68C8");
+            testPoly.addEventListener("click", function(){
+                var modal = document.getElementById("playerModal");
+                modal.style.display = "block";
+                modal.classList.add("fromTop");
+            });
+        </script>
+    </body>
+</html>
