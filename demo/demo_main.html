@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./reset.css">
+        <style>
+            @keyframes fadeInFromBottom{
+                from{
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to{
+                    opacity: 0.8;
+                    transform: translateY(0px);
+                }
+            }
+            .fadeIn{
+                animation: fadeInFromBottom .5s forwards;
+            }
+            
+            html,body{
+                width: 100%;
+                height: 100%;
+                font-family: "Helvetica";
+                background-color: rgb(255,254,250);
+                background-image: url(./main.png);
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            section{
+                width: 49.8%;
+                height: 98%;
+                transition: all .5s ease-in-out;
+            }
+            section a{
+                display: block;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 200px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                text-decoration: none;
+                border: 1.8px solid rgb(40,40,40);
+                border-radius: 5px;
+                color: rgb(40,40,40);
+                opacity: 0;
+                background-color: #ffffff;
+                
+                transition: all .2s ease-in-out;
+            }
+            section a:hover{
+                color: #ffffff;
+                background-color: rgb(40,40,40);
+            }
+            #musicToColor{
+                position: absolute;
+                left: 0;
+                opacity: 0.4;
+            }
+            #musicToColor:hover{
+                opacity: 1;
+            }
+            
+            #colorToMusic{
+                position: absolute;
+                right: 0;
+                opacity: 0.4;
+            }
+            #colorToMusic:hover{
+                opacity: 1;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <section id="musicToColor">
+<!--            <img src="./main_mtoc.png" alt="">-->
+            <a href="./demo_musicToColor.html">MUSIC&nbsp;&rarr;&nbsp;COLOR</a>
+        </section>
+        <section id="colorToMusic">
+<!--            <img src="./main_ctom.png" alt="">-->
+            <a href="./demo_colorToMusic.html">COLOR&nbsp;&rarr;&nbsp;MUSIC</a>
+        </section>
+        
+        <script>
+            var musicToColorSection = document.getElementById("musicToColor");
+            var musicToColorLink = document.querySelector("#musicToColor a");
+            var colorToMusicSection = document.getElementById("colorToMusic");
+            var colorToMusicLink = document.querySelector("#colorToMusic a");
+            musicToColorSection.addEventListener("mouseover",function(){
+                musicToColorLink.classList.add("fadeIn");
+            });
+            musicToColorSection.addEventListener("mouseout",function(){
+                musicToColorLink.classList.remove("fadeIn");
+            });
+            colorToMusicSection.addEventListener("mouseover",function(){
+                colorToMusicLink.classList.add("fadeIn");
+            });
+            colorToMusicSection.addEventListener("mouseout",function(){
+                colorToMusicLink.classList.remove("fadeIn");
+            });
+        </script>
+    </body>
+</html>

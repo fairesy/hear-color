@@ -1,0 +1,30 @@
+<!--
+150723.
+python -m SimpleHTTPServer 로 서버 띄워서 crossOrigin isuue 해결
+-->
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var audio = new Audio();
+		audio.src = './sample.mp3';
+		audio.controls = true;
+		document.body.appendChild(audio);
+
+		var context = new AudioContext();
+		var analyser = context.createAnalyser();
+
+		window.addEventListener('load', function(e) {
+			var source = context.createMediaElementSource(audio);
+			console.log(source);
+			source.connect(analyser);
+			analyser.connect(context.destination);
+
+		  // ...call requestAnimationFrame() and render the analyser's output to canvas.
+		}, false);
+	</script>
+</body>
+</html>
