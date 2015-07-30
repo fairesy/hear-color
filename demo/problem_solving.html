@@ -38,7 +38,7 @@ python -m SimpleHTTPServer 로 서버 띄워서 crossOrigin isuue 해결
 			var bufferLength = 128;
 			var dataArray = new Uint8Array(bufferLength);
 
-			var WIDTH = 600;
+			var WIDTH = 900;
 			var HEIGHT = 400;
 			createCanvas(WIDTH, HEIGHT);
 
@@ -51,7 +51,7 @@ python -m SimpleHTTPServer 로 서버 띄워서 crossOrigin isuue 해결
 				canvasCtx.fillRect(0,0,WIDTH,HEIGHT);
 
 				//barWidth를 캔버스의 너비를 bar의 갯수(buffer length)로 나눈 값으로 설정합니다.
-				var barWidth = (WIDTH / bufferLength) * 2.5;
+				var barWidth = (WIDTH / bufferLength) * 1.5;
 				var barHeight;
 				var x = 0;
 
