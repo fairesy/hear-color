@@ -1,0 +1,15 @@
+{
+  "name": "hear-color",
+  "version": "0.0.0",
+  "description": "audio api wrapper and visualizer",
+  "main": "visualizer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "audio",
+    "visualizer"
+  ],
+  "author": "shinyoung",
+  "license": "MIT"
+}

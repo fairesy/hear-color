@@ -1,0 +1,64 @@
+<html>
+    <head>
+       <meta charset="utf-8">
+        <title>AudioHelper</title>
+        <style>
+            #player{
+                width: 370px;
+                height: 120px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+            #player>button{
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+                cursor: pointer;
+                border: 0px;
+                background-color: transparent;
+            }
+            #player>button>img{
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+       <div id="player">
+           <button id="playButton"><img src="assets/image/playButton.png" alt="play"></button>
+           <button id="pauseButton"><img src="assets/image/pauseButton.png" alt="pause"></button>
+           <button id="stopButton"><img src="assets/image/stopButton.png" alt="stop"></button>
+           <span>now playing....</span>
+           <span id="nowPlaying"></span>
+           <button id="loopButton">loop</button>
+           <button id="muteButton">mute</button>
+           <button id="volumeUp">volume UP</button>
+           <button id="volumeDown">volume DOWN</button>
+       </div>
+       
+        <script type="text/javascript" src="audioHelper.js"></script>
+        <script>
+            var audio = new Audio();
+            audio.src = "./assets/audio/sample.mp3";
+            
+            //[질문] window.AudioHelper덕분에 new 없이도 쓸 수 있는데, 그러면 new Audio(처음인풋)에서 "처음인풋"에 해당하는건 AudioHelper.init(처음인풋); 이런 식으로 쓰게 되나요?
+            var helper = new AudioHelper(audio);
+            helper.init();
+            
+            //......??왜 갑자기 안먹지.....? -> if(!this.audioLoaded) 문제 -> 아 없애니까 또 문젤세 
+            helper.makesPlayButtonWith(document.getElementById("playButton"));
+            helper.makesPauseButtonWith(document.getElementById("pauseButton"));
+            helper.makesStopButtonWith(document.getElementById("stopButton"));
+            helper.makesLoopToggleWith(document.getElementById("loopButton"));
+            helper.makesMuteToggleWith(document.getElementById("muteButton"));
+            
+            helper.showNowPlayingOn(document.getElementById("nowPlaying"));
+            helper.makesVolumeUpWith(document.getElementById("volumeUp"));
+            helper.makesVolumeDownWith(document.getElementById("volumeDown"));
+            
+        </script>
+    </body>
+</html>
