@@ -22,8 +22,10 @@
         */
     }
     
-    AudioHelper.prototype.init = function(placeToPutAudio){
+    AudioHelper.prototype.init = function(){
+        var placeToPutAudio = document.getElementById("player");
         placeToPutAudio.appendChild(this.audio);
+        
         this.audio.addEventListener("canplaythrough", this.loaded.bind(this), false);
     };
     
@@ -37,7 +39,7 @@
         this.dataArray = new Uint8Array(this.bufferLength);
 
         setInterval(function(){
-            console.log(this.getFrequencyData());
+            console.log(this.getAudioData());
         }.bind(this), 1000);
     };
     
@@ -126,7 +128,7 @@
             setInterval(function(){
                 this.getCurrentTime();
                 //output 형식은 이후 수정.
-                element.textContent = nowPlayingName + ">>>" + this.currentTime.min+":"+this.currentTime.sec+"  "+ this.duration.min + ":" + this.duration.sec;
+//                element.textContent = nowPlayingName + ">>>" + currentTimeMin+":"+currentTimeSec+"  "+ durationMin + ":" + durationSec;
             }.bind(this),1000);
             
             
@@ -151,7 +153,7 @@
     /*—————————————————————————————————————————
     > Audio Data helper (with Audio API)
     —————————————————————————————————————————*/
-    AudioHelper.prototype.getFrequencyData = function(){
+    AudioHelper.prototype.getAudioData = function(){
         this.analyser.getByteFrequencyData(this.dataArray);
         return this.dataArray;
     };

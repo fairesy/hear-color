@@ -44,11 +44,10 @@
             var audio = new Audio();
             audio.src = "./assets/audio/sample.mp3";
             
-            //[질문] window.AudioHelper덕분에 new 없이도 쓸 수 있는데, 그러면 new Audio(처음인풋)에서 "처음인풋"에 해당하는건 AudioHelper.init(처음인풋); 이런 식으로 쓰게 되나요?
+            //파일 로딩시점 포인트- 콜백 
             var helper = new AudioHelper(audio);
-            helper.init();
+            helper.init(document.getElementById("player"));
             
-            //......??왜 갑자기 안먹지.....? -> if(!this.audioLoaded) 문제 -> 아 없애니까 또 문젤세 
             helper.makesPlayButtonWith(document.getElementById("playButton"));
             helper.makesPauseButtonWith(document.getElementById("pauseButton"));
             helper.makesStopButtonWith(document.getElementById("stopButton"));
