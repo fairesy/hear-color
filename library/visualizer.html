@@ -4,34 +4,6 @@
         <meta charset="utf-8">
     </head>
     <body>
-        
         <script src="visualizer.js"></script>
-        <script>
-/*
-오디오를 입력받아 원하는 '모양'으로 시각화한다 
-
-[input]
-    audio file
-    option
-        + type : wave | bar |
-        + size : (width, height)
-        + color : (bg, visualizer)
-
-[output]
-    canvas
-*/
-
-var audio = new Audio();
-
-//1 option을 오브젝트로 전달? (visualizer === canvas)
-var visualizer = new Visualizer(audio, {options});            
-
-//2 중간단계를 거쳐서?
-var visualizer = new Visualizer(audio);
-visualizer.size = [ width, height ];
-visualizer.type = "bar";
-var visualizer_canvas = visualizer.execute();
-            
-        </script>
     </body>
 </html>

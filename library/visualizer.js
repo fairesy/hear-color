@@ -52,7 +52,7 @@
 
     Visualizer.prototype.drawBarVisualizer = function(){
 
-        draw = requestAnimationFrame(this.drawVisualizer);
+        requestAnimationFrame(this.drawBarVisualizer).bind(this);
 
         this.analyser.getByteFrequencyData(this.dataArray);
 

@@ -34,6 +34,10 @@ window.addEventListener('load', function(e) {
 	function draw(){
 		drawVisual = requestAnimationFrame(draw);
 
+        //1차로 요걸 밖으로 내보내는 정도의 추상화 
+        //그 다음에 그리는 로직은 따로. 
+        //html5 오디오 래핑 라이브러리? (play pause etc)
+        
 		analyser.getByteFrequencyData(dataArray);
 		canvasCtx.fillStyle = "rgb(250,250,250)";
 		canvasCtx.fillRect(0,0,WIDTH,HEIGHT);

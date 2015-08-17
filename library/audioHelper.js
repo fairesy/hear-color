@@ -23,6 +23,7 @@
     }
     
     AudioHelper.prototype.init = function(placeToPutAudio){
+        this.helperBase = placeToPutAudio;
         placeToPutAudio.appendChild(this.audio);
         this.audio.addEventListener("canplaythrough", this.loaded.bind(this), false);
     };
@@ -36,73 +37,112 @@
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
 
-        setInterval(function(){
-            console.log(this.getFrequencyData());
-        }.bind(this), 1000);
+//        setInterval(function(){
+//            console.log(this.getFrequencyDataBetween(0,100));
+//        }.bind(this), 1000);
     };
     
     /*-----------------------------------------------------------------------------------
     > Custom Player helper (with audio tag)
     -----------------------------------------------------------------------------------*/
-    AudioHelper.prototype.makesPlayButtonWith = function(element){
+    AudioHelper.prototype.createPlayButton = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "playButton");
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/image/playButton.png");
+        button.appendChild(img);
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.play();
-            }.bind(this),false);
+            }.bind(this));
         }.bind(this));
     };
-    
-    AudioHelper.prototype.makesPauseButtonWith = function(element){
+
+    AudioHelper.prototype.createPauseButton = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "pauseButton");
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/image/pauseButton.png");
+        button.appendChild(img);
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.pause();
-            }.bind(this),false);
+            }.bind(this));
         }.bind(this));
     };
     
-    AudioHelper.prototype.makesStopButtonWith = function(element){
+    AudioHelper.prototype.createStopButton = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "stopButton");
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/image/stopButton.png");
+        button.appendChild(img);
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.pause();
                 this.audio.currentTime = 0;
-            }.bind(this),false);
+            }.bind(this));
         }.bind(this));
-        
     };
-    
-    AudioHelper.prototype.makesLoopToggleWith = function(element){
+
+    AudioHelper.prototype.createLoopToggle = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "loopButton");
+        button.textContent = "loop";
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.loop = this.audio.loop ? false : true;
-            }.bind(this),false);
+            }.bind(this));
         }.bind(this));
-        
-    };
-    AudioHelper.prototype.makesMuteToggleWith = function(element){
-        this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
-                this.audio.muted = this.audio.muted ? false : true;
-            }.bind(this),false);
-        }.bind(this));
-        
     };
     
-    AudioHelper.prototype.makesVolumeDownWith = function(element){
+    AudioHelper.prototype.createMuteToggle = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "muteButton");
+        button.textContent = "mute";
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click",function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
+                this.audio.muted = this.audio.muted ? false : true;
+            }.bind(this));
+        }.bind(this));
+    };
+    
+    AudioHelper.prototype.createVolumeDownButton = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "volumeDown");
+        button.textContent = "volume DOWN";
+        
+        this.audio.addEventListener("canplaythrough", function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.volume = (this.audio.volume <= 0) ? 0 : (this.audio.volume-0.1).toFixed(1);
-            }.bind(this),false);
+            }.bind(this));
         }.bind(this));
-        
     };
-    AudioHelper.prototype.makesVolumeUpWith = function(element){
+
+    AudioHelper.prototype.createVolumeUpButton = function(){
+        var button = document.createElement("button");
+        button.setAttribute("id", "volumeUp");
+        button.textContent = "voume UP"
+        
         this.audio.addEventListener("canplaythrough", function(){
-            element.addEventListener("click", function(){
+            this.helperBase.appendChild(button);
+            button.addEventListener("click", function(){
                 this.audio.volume = (this.audio.volume >= 1) ? 1 : (this.audio.volume+0.1).toFixed(1);
-            }.bind(this), false);
+            }.bind(this));
         }.bind(this));
-        
     };
+    
     AudioHelper.prototype.makesVolumeSliderWith = function(element){
         
     };
@@ -112,6 +152,10 @@
     };
     
     AudioHelper.prototype.showNowPlayingOn = function(element){
+        var nowPlaying = document.createElement("span");
+        nowPlaying.setAttribute("id", "nowPlaying");
+        this.helperBase.appendChild(nowPlaying);
+        
         this.audio.addEventListener("canplaythrough", function(){
             
             //재생중인 파일 이름 가지고 오기 
@@ -126,7 +170,7 @@
             setInterval(function(){
                 this.getCurrentTime();
                 //output 형식은 이후 수정.
-                element.textContent = nowPlayingName + ">>>" + this.currentTime.min+":"+this.currentTime.sec+"  "+ this.duration.min + ":" + this.duration.sec;
+                nowPlaying.textContent = nowPlayingName + ">>>" + this.currentTime.min+":"+this.currentTime.sec+"  "+ this.duration.min + ":" + this.duration.sec;
             }.bind(this),1000);
             
             
@@ -151,11 +195,57 @@
     /*—————————————————————————————————————————
     > Audio Data helper (with Audio API)
     —————————————————————————————————————————*/
-    AudioHelper.prototype.getFrequencyData = function(){
+    //getFrequencyDataBetweenBetween(0,100);
+    AudioHelper.prototype.getFrequencyDataBetween = function(from, to){
         this.analyser.getByteFrequencyData(this.dataArray);
-        return this.dataArray;
+        return this.dataArray.subarray(from,to);
     };
     
+    /*-----------------------------------------------------------------------------------
+    > Visualizer helper
+    -----------------------------------------------------------------------------------*/
+    AudioHelper.prototype.createBarVisualizer = function(){
+        this.canvas = this.createCanvas();
+        this.visualizerCtx = this.canvas.getContext("2d");
+        document.body.appendChild(this.canvas);
+        
+        this.audio.addEventListener("canplaythrough", function(){
+            this.drawBarVisualizer();
+        }.bind(this));
+    };
+    
+    AudioHelper.prototype.createCanvas = function(){
+        var canvas = document.createElement("canvas");
+        canvas.width = 800;
+        canvas.height = 500;
+        return canvas;
+    };
+    
+    AudioHelper.prototype.drawBarVisualizer = function(){
+        requestAnimationFrame(this.drawBarVisualizer.bind(this));
+        //[TODO] drawVisualizer를 주파수 영역 지정해서 여러개 돌아갈 수 있게 수정.
+
+        var targetArray = this.getFrequencyDataBetween(0,100);
+//        console.log(targetArray);
+
+        this.visualizerCtx.fillStyle = "#303030";
+        this.visualizerCtx.fillRect = (0, 0, this.canvas.width, this.canvas.height);
+        //150817 ???왜 오류가 없는데 안보이지 캔버스???
+
+        var barWidth = (this.canvas.width / targetArray.length) * 2.5; //매직넘버어어
+        var barHeight;
+        var x = 0;
+
+        for (var i = 0; i < targetArray.length; i++) {	
+            barHeight = targetArray[i] * 1.8;
+            this.visualizerCtx.fillStyle = "#909090";
+            this.visualizerCtx.fillRect= (x, this.canvas.height - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+        
+    };
+
     /*-----------------------------------------------------------------------------------
     > Debug helper
     -----------------------------------------------------------------------------------*/

@@ -27,36 +27,26 @@
         </style>
     </head>
     <body>
-       <div id="player">
-           <button id="playButton"><img src="assets/image/playButton.png" alt="play"></button>
-           <button id="pauseButton"><img src="assets/image/pauseButton.png" alt="pause"></button>
-           <button id="stopButton"><img src="assets/image/stopButton.png" alt="stop"></button>
-           <span>now playing....</span>
-           <span id="nowPlaying"></span>
-           <button id="loopButton">loop</button>
-           <button id="muteButton">mute</button>
-           <button id="volumeUp">volume UP</button>
-           <button id="volumeDown">volume DOWN</button>
-       </div>
+       <div id="player"></div>
        
         <script type="text/javascript" src="audioHelper.js"></script>
         <script>
             var audio = new Audio();
             audio.src = "./assets/audio/sample.mp3";
             
-            //파일 로딩시점 포인트- 콜백 
             var helper = new AudioHelper(audio);
             helper.init(document.getElementById("player"));
+                        
+            helper.createPlayButton();
+            helper.createPauseButton();
+            helper.createStopButton();
+            helper.createLoopToggle();
+            helper.createMuteToggle();
+            helper.createVolumeUpButton();
+            helper.createVolumeDownButton();
+            helper.showNowPlayingOn();
             
-            helper.makesPlayButtonWith(document.getElementById("playButton"));
-            helper.makesPauseButtonWith(document.getElementById("pauseButton"));
-            helper.makesStopButtonWith(document.getElementById("stopButton"));
-            helper.makesLoopToggleWith(document.getElementById("loopButton"));
-            helper.makesMuteToggleWith(document.getElementById("muteButton"));
-            
-            helper.showNowPlayingOn(document.getElementById("nowPlaying"));
-            helper.makesVolumeUpWith(document.getElementById("volumeUp"));
-            helper.makesVolumeDownWith(document.getElementById("volumeDown"));
+            helper.createBarVisualizer();
             
         </script>
     </body>

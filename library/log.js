@@ -19,11 +19,13 @@ Uncaught DOMException: Failed to execute 'createMediaStreamSource' on 'AudioCont
 
 현재 audio data api부분 상황.
     AudioHelper.prototype.getAudioData = function(){
+        audioContext = new AudioContext(); 
         var source = this.audioContext.createMediaStreamSource(this.audio);
         
         var analyser = audioContext.createAnalyser();
         source.connect(analyser);
         analyser.connect(audioContext.destination);
+    
         //analyser노드는 특정 fft domain 범위 안의 오디오 데이터를 가지고 오는 역할을 합니다. 
         //fft domain은 analyser.fftSize로 지정해줍니다. 따로 정하지 않을 경우 기본값은 2048입니다. 
         
