@@ -36,10 +36,6 @@
         
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
-
-//        setInterval(function(){
-//            console.log(this.getFrequencyDataBetween(0,100));
-//        }.bind(this), 1000);
     };
     
     /*-----------------------------------------------------------------------------------
@@ -204,43 +200,55 @@
     /*-----------------------------------------------------------------------------------
     > Visualizer helper
     -----------------------------------------------------------------------------------*/
-    AudioHelper.prototype.createBarVisualizer = function(){
-        this.canvas = this.createCanvas();
-        this.visualizerCtx = this.canvas.getContext("2d");
-        document.body.appendChild(this.canvas);
+    AudioHelper.prototype.createBarVisualizer = function(from, to){
+//        this.canvas = this.createCanvas();
+//        this.visualizerCtx = this.canvas.getContext("2d");
+//        document.body.appendChild(this.canvas);
+//        
+//        this.audio.addEventListener("canplaythrough", function(){
+//            this.drawBarVisualizer(from,to);
+//        }.bind(this));
+        var canvas = this.createCanvas();
+        var visualizerCtx = canvas.getContext("2d");
+        document.body.appendChild(canvas);
         
         this.audio.addEventListener("canplaythrough", function(){
-            this.drawBarVisualizer();
+            this.drawBarVisualizer(from, to, canvas, visualizerCtx);
         }.bind(this));
     };
     
     AudioHelper.prototype.createCanvas = function(){
         var canvas = document.createElement("canvas");
-        canvas.width = 800;
-        canvas.height = 500;
+        canvas.width = 400;
+        canvas.height = 300;
         return canvas;
     };
     
-    AudioHelper.prototype.drawBarVisualizer = function(){
-        requestAnimationFrame(this.drawBarVisualizer.bind(this));
-        //[TODO] drawVisualizer를 주파수 영역 지정해서 여러개 돌아갈 수 있게 수정.
+    AudioHelper.prototype.drawBarVisualizer = function(from, to, canvas, visualizerCtx){
+        requestAnimationFrame(this.drawBarVisualizer.bind(this, from, to, canvas, visualizerCtx));
 
-        var targetArray = this.getFrequencyDataBetween(0,100);
+        var targetArray = this.getFrequencyDataBetween(from,to);
 //        console.log(targetArray);
 
-        this.visualizerCtx.fillStyle = "#303030";
-        this.visualizerCtx.fillRect = (0, 0, this.canvas.width, this.canvas.height);
-        //150817 ???왜 오류가 없는데 안보이지 캔버스???
+        visualizerCtx.fillStyle = "rgb(250,250,250)";
+        visualizerCtx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        visualizerCtx.fillStyle = "#303030";
+        visualizerCtx.font = "15px Arial";
+        visualizerCtx.fillText("frequency from "+from + " to "+ to, 10, 20);
 
-        var barWidth = (this.canvas.width / targetArray.length) * 2.5; //매직넘버어어
+        var barWidth = (canvas.width / targetArray.length)*0.6; //매직넘버어어
         var barHeight;
         var x = 0;
 
         for (var i = 0; i < targetArray.length; i++) {	
             barHeight = targetArray[i] * 1.8;
-            this.visualizerCtx.fillStyle = "#909090";
-            this.visualizerCtx.fillRect= (x, this.canvas.height - barHeight, barWidth, barHeight);
-
+            visualizerCtx.fillStyle = "rgb(72,175,180)";
+            
+            visualizerCtx.font = "5px Arial";
+            visualizerCtx.fillText(targetArray[i], x, canvas.height - barHeight/2 - 15);
+            
+            visualizerCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
             x += barWidth + 1;
         }
         
