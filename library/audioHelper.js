@@ -36,6 +36,14 @@
         
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
+        
+        //testing time domain data @150820 
+        this.timeArray = new Uint8Array(this.bufferLength);
+        //collecting data to figure whole shape of music
+        this.collectionArray = new Array(this.bufferLength);
+        for(var i=0;i<this.collectionArray.length;i++){
+            this.collectionArray[i] = 0;
+        }
     };
     
     /*-----------------------------------------------------------------------------------
@@ -44,9 +52,7 @@
     AudioHelper.prototype.createPlayButton = function(){
         var button = document.createElement("button");
         button.setAttribute("id", "playButton");
-        var img = document.createElement("img");
-        img.setAttribute("src", "assets/image/playButton.png");
-        button.appendChild(img);
+        button.textContent = "play";
         
         this.audio.addEventListener("canplaythrough", function(){
             this.helperBase.appendChild(button);
@@ -54,14 +60,14 @@
                 this.audio.play();
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
 
     AudioHelper.prototype.createPauseButton = function(){
         var button = document.createElement("button");
         button.setAttribute("id", "pauseButton");
-        var img = document.createElement("img");
-        img.setAttribute("src", "assets/image/pauseButton.png");
-        button.appendChild(img);
+        button.textContent = "pause";
         
         this.audio.addEventListener("canplaythrough", function(){
             this.helperBase.appendChild(button);
@@ -69,14 +75,14 @@
                 this.audio.pause();
             }.bind(this));
         }.bind(this));
+
+        return this;
     };
     
     AudioHelper.prototype.createStopButton = function(){
         var button = document.createElement("button");
         button.setAttribute("id", "stopButton");
-        var img = document.createElement("img");
-        img.setAttribute("src", "assets/image/stopButton.png");
-        button.appendChild(img);
+        button.textContent = "stop";
         
         this.audio.addEventListener("canplaythrough", function(){
             this.helperBase.appendChild(button);
@@ -85,6 +91,8 @@
                 this.audio.currentTime = 0;
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
 
     AudioHelper.prototype.createLoopToggle = function(){
@@ -98,6 +106,8 @@
                 this.audio.loop = this.audio.loop ? false : true;
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
     
     AudioHelper.prototype.createMuteToggle = function(){
@@ -111,6 +121,8 @@
                 this.audio.muted = this.audio.muted ? false : true;
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
     
     AudioHelper.prototype.createVolumeDownButton = function(){
@@ -124,12 +136,14 @@
                 this.audio.volume = (this.audio.volume <= 0) ? 0 : (this.audio.volume-0.1).toFixed(1);
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
 
     AudioHelper.prototype.createVolumeUpButton = function(){
         var button = document.createElement("button");
         button.setAttribute("id", "volumeUp");
-        button.textContent = "voume UP"
+        button.textContent = "volume UP"
         
         this.audio.addEventListener("canplaythrough", function(){
             this.helperBase.appendChild(button);
@@ -137,13 +151,15 @@
                 this.audio.volume = (this.audio.volume >= 1) ? 1 : (this.audio.volume+0.1).toFixed(1);
             }.bind(this));
         }.bind(this));
+        
+        return this;
     };
     
-    AudioHelper.prototype.makesVolumeSliderWith = function(element){
+    AudioHelper.prototype.createVolumeSlider = function(element){
         
     };
     
-    AudioHelper.prototype.makesProgressBarWith = function(element){
+    AudioHelper.prototype.createProgressBar = function(element){
     
     };
     
@@ -172,6 +188,7 @@
             
         }.bind(this));
         
+        return this;
     };
     
     AudioHelper.prototype.getDuration = function(){
@@ -194,20 +211,38 @@
     //getFrequencyDataBetweenBetween(0,100);
     AudioHelper.prototype.getFrequencyDataBetween = function(from, to){
         this.analyser.getByteFrequencyData(this.dataArray);
-        return this.dataArray.subarray(from,to);
+        return this.dataArray.subarray(from, to);
+    };
+    
+    AudioHelper.prototype.getTimeDomainData = function(){
+        this.analyser.getByteTimeDomainData(this.timeArray);
+        return this.timeArray;
+    };
+    AudioHelper.prototype.getTimeDomainDataBetween = function(from, to){
+        this.analyser.getByteTimeDomainData(this.timeArray);
+        return this.timeArray.subarray(from, to);
     };
     
     /*-----------------------------------------------------------------------------------
     > Visualizer helper
     -----------------------------------------------------------------------------------*/
+    AudioHelper.prototype.createCanvas = function(){
+        var canvas = document.createElement("canvas");
+        canvas.width = 400;
+        canvas.height = 300;
+        return canvas;
+    };
+    AudioHelper.prototype.createCanvasInSize = function(_width, _height){
+        var canvas = document.createElement("canvas");
+        canvas.width = _width;
+        canvas.height = _height;
+        return canvas;
+    };
+    
+    /* visualizer with Frequency data
+     * can specify frequency range by (from, to)
+     */
     AudioHelper.prototype.createBarVisualizer = function(from, to){
-//        this.canvas = this.createCanvas();
-//        this.visualizerCtx = this.canvas.getContext("2d");
-//        document.body.appendChild(this.canvas);
-//        
-//        this.audio.addEventListener("canplaythrough", function(){
-//            this.drawBarVisualizer(from,to);
-//        }.bind(this));
         var canvas = this.createCanvas();
         var visualizerCtx = canvas.getContext("2d");
         document.body.appendChild(canvas);
@@ -215,13 +250,8 @@
         this.audio.addEventListener("canplaythrough", function(){
             this.drawBarVisualizer(from, to, canvas, visualizerCtx);
         }.bind(this));
-    };
-    
-    AudioHelper.prototype.createCanvas = function(){
-        var canvas = document.createElement("canvas");
-        canvas.width = 400;
-        canvas.height = 300;
-        return canvas;
+        
+        return this;
     };
     
     AudioHelper.prototype.drawBarVisualizer = function(from, to, canvas, visualizerCtx){
@@ -229,7 +259,7 @@
 
         var targetArray = this.getFrequencyDataBetween(from,to);
 //        console.log(targetArray);
-
+        
         visualizerCtx.fillStyle = "rgb(250,250,250)";
         visualizerCtx.fillRect(0, 0, canvas.width, canvas.height);
         
@@ -254,6 +284,91 @@
         
     };
 
+    /* visualizer with Time domain data
+     * 
+     */
+    AudioHelper.prototype.createTimeDomainVisualizer = function(){
+        var canvas = this.createCanvasInSize(1200,300);
+        var visualizerCtx = canvas.getContext("2d");
+        document.body.appendChild(canvas);
+        
+        this.audio.addEventListener("canplaythrough", function(){
+            this.drawTimeVisualizer(canvas, visualizerCtx);
+        }.bind(this));
+        
+        return this;
+    };
+    
+    AudioHelper.prototype.drawTimeVisualizer = function(canvas, visualizerCtx){
+        requestAnimationFrame(this.drawTimeVisualizer.bind(this, canvas, visualizerCtx));
+        
+        var timeArray = this.getTimeDomainData();
+        visualizerCtx.fillStyle = "rgb(250,250,250)";
+        visualizerCtx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        visualizerCtx.fillStyle = "#303030";
+        visualizerCtx.font = "15px Arial";
+
+        var barWidth = (canvas.width / timeArray.length)*0.1; //매직넘버어어
+        var barHeight;
+        var x = 0;
+
+        for (var i = 0; i < timeArray.length; i++) {	
+            barHeight = timeArray[i] * 1.8;
+            visualizerCtx.fillStyle = "rgb(148,0,70)";
+            
+            visualizerCtx.font = "5px Arial";
+            visualizerCtx.fillText("-", x, canvas.height - barHeight/2 - 15);
+            
+            visualizerCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    };
+    
+    AudioHelper.prototype.collectFrequencyData = function(){
+        
+        var collecting;
+        
+        this.audio.addEventListener("ended",function(){
+            console.log(this.collectionArray);
+            
+            clearInterval(collecting);
+            
+            var canvas = this.createCanvasInSize(1000,500);
+            var visualizerCtx = canvas.getContext("2d");
+            document.body.appendChild(canvas);
+            
+            var barWidth = (canvas.width / this.collectionArray.length) * 0.2;
+            var barHeight;
+            var x=0;
+            for(var i=0; i<this.collectionArray.length ;i++){
+                barHeight = this.collectionArray[i]/50; //240은 보통 음악을 4분으로 가정하여 계산한 수.
+                
+                visualizerCtx.fillStyle = "rgb(72,175,180)";
+            
+                visualizerCtx.font = "5px Arial";
+                visualizerCtx.fillText(this.collectionArray[i]/200, x, canvas.height - barHeight/2 - 15);
+
+                visualizerCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
+                x += barWidth + 1;
+            }
+            
+        }.bind(this),false);
+        
+        this.audio.addEventListener("play",function(){
+            console.log("collecting...!");
+            collecting = setInterval(function(){
+                var tempArray = this.getFrequencyDataBetween(0,1023);
+                
+                for(var i=0; i< tempArray.length ; i++) {
+                    this.collectionArray[i] = parseInt(this.collectionArray[i]) + parseInt(tempArray[i]);
+                }
+
+            }.bind(this),2000);
+        }.bind(this),false);
+        
+    };
+    
     /*-----------------------------------------------------------------------------------
     > Debug helper
     -----------------------------------------------------------------------------------*/
