@@ -17,9 +17,6 @@
             min : 0,
             sec : 0
         };
-        /*
-        옵션?
-        */
     }
     
     AudioHelper.prototype.init = function(placeToPutAudio){
@@ -36,13 +33,18 @@
         
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
-        
         //testing time domain data @150820 
         this.timeArray = new Uint8Array(this.bufferLength);
-        //collecting data to figure whole shape of music
+        
+        //collecting data to figure whole shape of music @150520
         this.collectionArray = new Array(this.bufferLength);
         for(var i=0;i<this.collectionArray.length;i++){
             this.collectionArray[i] = 0;
+        }
+        
+        this.timeCollectionArray = new Array(this.bufferLength);
+        for(var i=0;i<this.timeCollectionArray.length;i++){
+            this.timeCollectionArray[i] = 0;
         }
     };
     
@@ -208,7 +210,6 @@
     /*—————————————————————————————————————————
     > Audio Data helper (with Audio API)
     —————————————————————————————————————————*/
-    //getFrequencyDataBetweenBetween(0,100);
     AudioHelper.prototype.getFrequencyDataBetween = function(from, to){
         this.analyser.getByteFrequencyData(this.dataArray);
         return this.dataArray.subarray(from, to);
@@ -221,6 +222,107 @@
     AudioHelper.prototype.getTimeDomainDataBetween = function(from, to){
         this.analyser.getByteTimeDomainData(this.timeArray);
         return this.timeArray.subarray(from, to);
+    };
+    
+    AudioHelper.prototype.collectFrequencyData = function(){
+        
+        var collectingFrequency;
+        var collectCount = 0;
+        
+        this.audio.addEventListener("ended",function(){
+            console.log("collected frequency data for " + collectCount +"times");
+            console.log(this.collectionArray);
+            
+            clearInterval(collectingFrequency);
+            
+            var canvas = this.createCanvasInSize(1000,500);
+            var visualizerCtx = canvas.getContext("2d");
+            document.body.appendChild(canvas);
+            
+            var barWidth = (canvas.width / this.collectionArray.length) * 0.2;
+            var barHeight;
+            var x=0;
+            for(var i=0; i<this.collectionArray.length ;i++){
+                barHeight = this.collectionArray[i]/collectCount *2;
+                
+                visualizerCtx.fillStyle = "rgb(72,175,180)";
+            
+                visualizerCtx.font = "5px Arial";
+                visualizerCtx.fillText(this.collectionArray[i]/200, x, canvas.height - barHeight/2 - 15);
+
+                visualizerCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
+                x += barWidth + 1;
+            }
+            
+        }.bind(this),false);
+        
+        this.audio.addEventListener("play",function(){
+            console.log("collecting...Frequency");
+            collectingFrequency = setInterval(function(){
+                
+                //to colllect Frequency data
+                var tempArray = this.getFrequencyDataBetween(0,1023);
+                
+                for(var i=0; i< tempArray.length ; i++) {
+                    this.collectionArray[i] = parseInt(this.collectionArray[i]) + parseInt(tempArray[i]);
+                }
+                
+                collectCount++;
+
+            }.bind(this),2000);
+        }.bind(this),false);
+        
+    };
+    
+    //convert to time domain data
+    AudioHelper.prototype.collectTimeDomainData = function(){
+        
+        var collectingTime;
+        var collectCount = 0;
+        
+        this.audio.addEventListener("ended",function(){
+            console.log("collected time domain data for " + collectCount +"times");
+            console.log(this.timeCollectionArray);
+            
+            clearInterval(collectingTime);
+            
+            var canvas = this.createCanvasInSize(1000,500);
+            var visualizerCtx = canvas.getContext("2d");
+            document.body.appendChild(canvas);
+            
+            var barWidth = (canvas.width / this.timeCollectionArray.length) * 0.2;
+            var barHeight;
+            var x=0;
+            for(var i=0; i<this.timeCollectionArray.length ;i++){
+                barHeight = (this.timeCollectionArray[i]/collectCount) *3;
+                
+                visualizerCtx.fillStyle = "#660099";
+            
+//                visualizerCtx.font = "5px Arial";
+//                visualizerCtx.fillText(this.timeCollectionArray[i]/200, x, canvas.height - barHeight/2 - 15);
+
+                visualizerCtx.fillRect(x, canvas.height - barHeight, barWidth*2, 5);
+                x += barWidth + 1;
+            }
+            
+        }.bind(this),false);
+        
+        this.audio.addEventListener("play",function(){
+            console.log("collecting...Time");
+            collectingTime = setInterval(function(){
+
+                //to collect Time Domain data
+                var tempArray = this.getTimeDomainData();
+                
+                for(var i=0; i< tempArray.length ; i++) {
+                    this.timeCollectionArray[i] = parseInt(this.timeCollectionArray[i]) + parseInt(tempArray[i]);
+                }
+                
+                collectCount++;
+
+            }.bind(this),2000);
+        }.bind(this),false);
+        
     };
     
     /*-----------------------------------------------------------------------------------
@@ -258,7 +360,6 @@
         requestAnimationFrame(this.drawBarVisualizer.bind(this, from, to, canvas, visualizerCtx));
 
         var targetArray = this.getFrequencyDataBetween(from,to);
-//        console.log(targetArray);
         
         visualizerCtx.fillStyle = "rgb(250,250,250)";
         visualizerCtx.fillRect(0, 0, canvas.width, canvas.height);
@@ -325,49 +426,6 @@
         }
     };
     
-    AudioHelper.prototype.collectFrequencyData = function(){
-        
-        var collecting;
-        
-        this.audio.addEventListener("ended",function(){
-            console.log(this.collectionArray);
-            
-            clearInterval(collecting);
-            
-            var canvas = this.createCanvasInSize(1000,500);
-            var visualizerCtx = canvas.getContext("2d");
-            document.body.appendChild(canvas);
-            
-            var barWidth = (canvas.width / this.collectionArray.length) * 0.2;
-            var barHeight;
-            var x=0;
-            for(var i=0; i<this.collectionArray.length ;i++){
-                barHeight = this.collectionArray[i]/50; //240은 보통 음악을 4분으로 가정하여 계산한 수.
-                
-                visualizerCtx.fillStyle = "rgb(72,175,180)";
-            
-                visualizerCtx.font = "5px Arial";
-                visualizerCtx.fillText(this.collectionArray[i]/200, x, canvas.height - barHeight/2 - 15);
-
-                visualizerCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
-                x += barWidth + 1;
-            }
-            
-        }.bind(this),false);
-        
-        this.audio.addEventListener("play",function(){
-            console.log("collecting...!");
-            collecting = setInterval(function(){
-                var tempArray = this.getFrequencyDataBetween(0,1023);
-                
-                for(var i=0; i< tempArray.length ; i++) {
-                    this.collectionArray[i] = parseInt(this.collectionArray[i]) + parseInt(tempArray[i]);
-                }
-
-            }.bind(this),2000);
-        }.bind(this),false);
-        
-    };
     
     /*-----------------------------------------------------------------------------------
     > Debug helper
