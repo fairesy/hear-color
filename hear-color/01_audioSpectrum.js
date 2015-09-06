@@ -24,7 +24,8 @@ var audio = new Audio();
 //audio.src = "../library/assets/audio/oksang_sugo.mp3";
 //audio.src = "../library/assets/audio/oksang_hihan.mp3";
 //audio.src = "../library/assets/audio/cran_papillon.mp3";
-audio.src = "../library/assets/audio/coldplay_everytear.mp3";
+//audio.src = "../library/assets/audio/coldplay_everytear.mp3";
+audio.src = "../library/assets/audio/lucid.mp3";
 
 var helper = new AudioHelper(audio);
 helper.init(document.getElementById("player"));
