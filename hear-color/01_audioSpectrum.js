@@ -12,20 +12,20 @@ var audio = new Audio();
 //audio.src = "../library/assets/audio/iu.mp3";
 //audio.src = "../library/assets/audio/sen.mp3";
 
-//audio.src = "../library/assets/audio/sjaurim.mp3";
+//audio.src = "../library/assets/audio/jaurim.mp3";
 //audio.src = "../library/assets/audio/10cm_4.mp3";
 //audio.src = "../library/assets/audio/10cm_stalker.mp3";
 //audio.src = "../library/assets/audio/nell_fourTimes.mp3";
 
 //audio.src = "../library/assets/audio/depapepe_starrynight.mp3"; //todo
-//audio.src = "../library/assets/audio/depapepe_tearsoflove.mp3";
+audio.src = "../library/assets/audio/depapepe_tearsoflove.mp3";
 //audio.src = "../library/assets/audio/glee_defyinggravity.mp3";
 //audio.src = "../library/assets/audio/10cm_tonight.mp3";
 //audio.src = "../library/assets/audio/oksang_sugo.mp3";
 //audio.src = "../library/assets/audio/oksang_hihan.mp3";
 //audio.src = "../library/assets/audio/cran_papillon.mp3";
 //audio.src = "../library/assets/audio/coldplay_everytear.mp3";
-audio.src = "../library/assets/audio/lucid.mp3";
+//audio.src = "../library/assets/audio/lucid.mp3";
 
 var helper = new AudioHelper(audio);
 helper.init(document.getElementById("player"));
