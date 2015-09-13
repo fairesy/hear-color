@@ -4,14 +4,9 @@ $("input").on("change",function(){
     var audio = new Audio();
     audio.src = URL.createObjectURL(files[0]);
     console.log(audio);
-    
-//    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-//    var sourceNode = audioContext.createMediaElementSource(audio);
-//    sourceNode.connect(audioContext.destination);
-//    $("#hearcolor").append(audio);
-    
+
     var helper = new AudioHelper(audio);
-    helper.init($("hearcolor"));
+    helper.init($("#hearcolor"));
     
     audio.addEventListener("canplaythrough", function(){
         $("#basecamp").hide();
@@ -19,37 +14,27 @@ $("input").on("change",function(){
         $("#hearcolor button").on("click", function(){
             audio.play();
         });
+        
+        helper.createBarVisualizer(0,300);
+        helper.collectFrequencyData();
     });
     
     //[문제] audio.on("event", ) 형식이 유효하지 않다. js-jquery짬뽕
     audio.addEventListener("play", function(){
         $("#hearcolor button").hide();
         hearcolorVisualizer();
-        helper.collectFrequencyData();
     });
-    
-    //[TODO] collectFrequencyData 를 worker를 사용해 bg작업으로. 
-//    //태어나라 크롬 대신 일할 워커!!!
-//    var audioAnyaliserWorker = new Worker("audioAnalyser.js");
-//    
-//    //오디오 분석을 시작해주세요 워커!!
-//    var message = {"message":"start", "helper":helper};
-//    audioAnyaliserWorker.postMessage(JSON.stringify(message));
-//    
-//    //워커가 일한 결과를 받아온다!!
-//    audioAnyaliserWorker.onmessage = function(event){
-//        console.log(event.data);
-//    };
 });
 
 //visualizer : 전체 수정 필요
+//[문제] 캔버스는 나타나는데, 아무것도 그려지지 않는다! 시험삼아 helper.createBarVisualizer()도 해봤지만 그것도 안그려짐...
 function hearcolorVisualizer(){
     //[문제] 캔버스를 왜 $("#visualizer") 로 가지고 오면 getContext가 불가능한가???
     var canvas = document.getElementById("visualizer");
     var context = canvas.getContext("2d");
     var canvasWidth = canvas.width = window.innerWidth;
     var canvasHeight = canvas.height = window.innerHeight;
-    
+
     var cx = canvasWidth/2;
     var cy = canvasHeight/2;
 
@@ -127,5 +112,16 @@ function hearcolorVisualizer(){
     }
     window.requestAnimationFrame(Draw);
 }
-
     
+//    나중에 워커로 문제 해결해보기 
+//    //태어나라 크롬 대신 일할 워커!!!
+//    var audioAnyaliserWorker = new Worker("audioAnalyser.js");
+//    
+//    //오디오 분석을 시작해주세요 워커!!
+//    var message = {"message":"start", "helper":helper};
+//    audioAnyaliserWorker.postMessage(JSON.stringify(message));
+//    
+//    //워커가 일한 결과를 받아온다!!
+//    audioAnyaliserWorker.onmessage = function(event){
+//        console.log(event.data);
+//    };
