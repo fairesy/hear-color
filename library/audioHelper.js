@@ -382,61 +382,104 @@
 //            //[TODO]값 맵핑하는 부분 이후에 다 라이브러리 코드 밖으로 빼기 
 //            //[TODO]top1Id~top5Id 중에 150 이하 값이 있을 경우 제외하는 로직 추가 
             
-            getColor(sorted, 0, this.collectionArray, collectCount, visualizerCtx, 10, 100);
-            getColor(sorted, 1, this.collectionArray, collectCount, visualizerCtx, 50, 100);
-            getColor(sorted, 2, this.collectionArray, collectCount, visualizerCtx, 90, 100);
-            getColor(sorted, 3, this.collectionArray, collectCount, visualizerCtx, 130, 100);
-            getColor(sorted, 4, this.collectionArray, collectCount, visualizerCtx, 170, 100);
+//            대강의 베이스라인
+//            getColor(sorted, 0, this.collectionArray, collectCount, visualizerCtx, 10, 100);
+//            getColor(sorted, 1, this.collectionArray, collectCount, visualizerCtx, 50, 100);
+//            getColor(sorted, 2, this.collectionArray, collectCount, visualizerCtx, 90, 100);
+//            getColor(sorted, 3, this.collectionArray, collectCount, visualizerCtx, 130, 100);
+//            getColor(sorted, 4, this.collectionArray, collectCount, visualizerCtx, 170, 100);
+//            
+////            getColor(sorted, 10, this.collectionArray, collectCount, visualizerCtx, 10, 150);
+////            getColor(sorted, 11, this.collectionArray, collectCount, visualizerCtx, 50, 150);
+////            getColor(sorted, 12, this.collectionArray, collectCount, visualizerCtx, 90, 150);
+////            getColor(sorted, 13, this.collectionArray, collectCount, visualizerCtx, 130, 150);
+////            getColor(sorted, 14, this.collectionArray, collectCount, visualizerCtx, 170, 150);
+//            
+//            getColor(sorted, 80, this.collectionArray, collectCount, visualizerCtx, 10, 150);
+//            getColor(sorted, 81, this.collectionArray, collectCount, visualizerCtx, 50, 150);
+//            getColor(sorted, 82, this.collectionArray, collectCount, visualizerCtx, 90, 150);
+//            getColor(sorted, 83, this.collectionArray, collectCount, visualizerCtx, 130, 150);
+//            getColor(sorted, 84, this.collectionArray, collectCount, visualizerCtx, 170, 150);
+//            
+//            getColor(sorted, 20, this.collectionArray, collectCount, visualizerCtx, 10, 200);
+//            getColor(sorted, 21, this.collectionArray, collectCount, visualizerCtx, 50, 200);
+//            getColor(sorted, 22, this.collectionArray, collectCount, visualizerCtx, 90, 200);
+//            getColor(sorted, 23, this.collectionArray, collectCount, visualizerCtx, 130, 200);
+//            getColor(sorted, 24, this.collectionArray, collectCount, visualizerCtx, 170, 200);
+//            
+//            getColor(sorted, 30, this.collectionArray, collectCount, visualizerCtx, 10, 250);
+//            getColor(sorted, 31, this.collectionArray, collectCount, visualizerCtx, 50, 250);
+//            getColor(sorted, 32, this.collectionArray, collectCount, visualizerCtx, 90, 250);
+//            getColor(sorted, 33, this.collectionArray, collectCount, visualizerCtx, 130, 250);
+//            getColor(sorted, 34, this.collectionArray, collectCount, visualizerCtx, 170, 250);
+//            
+//            getColor(sorted, 40, this.collectionArray, collectCount, visualizerCtx, 10, 300);
+//            getColor(sorted, 41, this.collectionArray, collectCount, visualizerCtx, 50, 300);
+//            getColor(sorted, 42, this.collectionArray, collectCount, visualizerCtx, 90, 300);
+//            getColor(sorted, 43, this.collectionArray, collectCount, visualizerCtx, 130, 300);
+//            getColor(sorted, 44, this.collectionArray, collectCount, visualizerCtx, 170, 300);
+//            
+//            getColor(sorted, 50, this.collectionArray, collectCount, visualizerCtx, 10, 350);
+//            getColor(sorted, 51, this.collectionArray, collectCount, visualizerCtx, 50, 350);
+//            getColor(sorted, 52, this.collectionArray, collectCount, visualizerCtx, 90, 350);
+//            getColor(sorted, 53, this.collectionArray, collectCount, visualizerCtx, 130, 350);
+//            getColor(sorted, 54, this.collectionArray, collectCount, visualizerCtx, 170, 350);
+//            
+//            getColor(sorted, 60, this.collectionArray, collectCount, visualizerCtx, 10, 400);
+//            getColor(sorted, 61, this.collectionArray, collectCount, visualizerCtx, 50, 400);
+//            getColor(sorted, 62, this.collectionArray, collectCount, visualizerCtx, 90, 400);
+//            getColor(sorted, 63, this.collectionArray, collectCount, visualizerCtx, 130, 400);
+//            getColor(sorted, 64, this.collectionArray, collectCount, visualizerCtx, 170, 400);
+//            
+//            getColor(sorted, 70, this.collectionArray, collectCount, visualizerCtx, 10, 450);
+//            getColor(sorted, 71, this.collectionArray, collectCount, visualizerCtx, 50, 450);
+//            getColor(sorted, 72, this.collectionArray, collectCount, visualizerCtx, 90, 450);
+//            getColor(sorted, 73, this.collectionArray, collectCount, visualizerCtx, 130, 450);
+//            getColor(sorted, 74, this.collectionArray, collectCount, visualizerCtx, 170, 450);
             
-//            getColor(sorted, 10, this.collectionArray, collectCount, visualizerCtx, 10, 150);
-//            getColor(sorted, 11, this.collectionArray, collectCount, visualizerCtx, 50, 150);
-//            getColor(sorted, 12, this.collectionArray, collectCount, visualizerCtx, 90, 150);
-//            getColor(sorted, 13, this.collectionArray, collectCount, visualizerCtx, 130, 150);
-//            getColor(sorted, 14, this.collectionArray, collectCount, visualizerCtx, 170, 150);
+            getColor(sorted, 180, this.collectionArray, collectCount, visualizerCtx, 10, 50);
+            getColor(sorted, 181, this.collectionArray, collectCount, visualizerCtx, 50, 50);
+            getColor(sorted, 182, this.collectionArray, collectCount, visualizerCtx, 90, 50);
+            getColor(sorted, 183, this.collectionArray, collectCount, visualizerCtx, 130, 50);
+            getColor(sorted, 184, this.collectionArray, collectCount, visualizerCtx, 170, 50);
             
-            getColor(sorted, 80, this.collectionArray, collectCount, visualizerCtx, 10, 150);
-            getColor(sorted, 81, this.collectionArray, collectCount, visualizerCtx, 50, 150);
-            getColor(sorted, 82, this.collectionArray, collectCount, visualizerCtx, 90, 150);
-            getColor(sorted, 83, this.collectionArray, collectCount, visualizerCtx, 130, 150);
-            getColor(sorted, 84, this.collectionArray, collectCount, visualizerCtx, 170, 150);
+            getColor(sorted, 190, this.collectionArray, collectCount, visualizerCtx, 10, 100);
+            getColor(sorted, 191, this.collectionArray, collectCount, visualizerCtx, 50, 100);
+            getColor(sorted, 192, this.collectionArray, collectCount, visualizerCtx, 90, 100);
+            getColor(sorted, 193, this.collectionArray, collectCount, visualizerCtx, 130, 100);
+            getColor(sorted, 194, this.collectionArray, collectCount, visualizerCtx, 170, 100);
             
-            getColor(sorted, 20, this.collectionArray, collectCount, visualizerCtx, 10, 200);
-            getColor(sorted, 21, this.collectionArray, collectCount, visualizerCtx, 50, 200);
-            getColor(sorted, 22, this.collectionArray, collectCount, visualizerCtx, 90, 200);
-            getColor(sorted, 23, this.collectionArray, collectCount, visualizerCtx, 130, 200);
-            getColor(sorted, 24, this.collectionArray, collectCount, visualizerCtx, 170, 200);
+            getColor(sorted, 200, this.collectionArray, collectCount, visualizerCtx, 10, 150);
+            getColor(sorted, 201, this.collectionArray, collectCount, visualizerCtx, 50, 150);
+            getColor(sorted, 202, this.collectionArray, collectCount, visualizerCtx, 90, 150);
+            getColor(sorted, 203, this.collectionArray, collectCount, visualizerCtx, 130, 150);
+            getColor(sorted, 204, this.collectionArray, collectCount, visualizerCtx, 170, 150);
             
-            getColor(sorted, 30, this.collectionArray, collectCount, visualizerCtx, 10, 250);
-            getColor(sorted, 31, this.collectionArray, collectCount, visualizerCtx, 50, 250);
-            getColor(sorted, 32, this.collectionArray, collectCount, visualizerCtx, 90, 250);
-            getColor(sorted, 33, this.collectionArray, collectCount, visualizerCtx, 130, 250);
-            getColor(sorted, 34, this.collectionArray, collectCount, visualizerCtx, 170, 250);
+            getColor(sorted, 210, this.collectionArray, collectCount, visualizerCtx, 10, 200);
+            getColor(sorted, 211, this.collectionArray, collectCount, visualizerCtx, 50, 200);
+            getColor(sorted, 212, this.collectionArray, collectCount, visualizerCtx, 90, 200);
+            getColor(sorted, 213, this.collectionArray, collectCount, visualizerCtx, 130, 200);
+            getColor(sorted, 214, this.collectionArray, collectCount, visualizerCtx, 170, 200);
             
-            getColor(sorted, 40, this.collectionArray, collectCount, visualizerCtx, 10, 300);
-            getColor(sorted, 41, this.collectionArray, collectCount, visualizerCtx, 50, 300);
-            getColor(sorted, 42, this.collectionArray, collectCount, visualizerCtx, 90, 300);
-            getColor(sorted, 43, this.collectionArray, collectCount, visualizerCtx, 130, 300);
-            getColor(sorted, 44, this.collectionArray, collectCount, visualizerCtx, 170, 300);
+            getColor(sorted, 220, this.collectionArray, collectCount, visualizerCtx, 10, 250);
+            getColor(sorted, 221, this.collectionArray, collectCount, visualizerCtx, 50, 250);
+            getColor(sorted, 222, this.collectionArray, collectCount, visualizerCtx, 90, 250);
+            getColor(sorted, 223, this.collectionArray, collectCount, visualizerCtx, 130, 250);
+            getColor(sorted, 224, this.collectionArray, collectCount, visualizerCtx, 170, 250);
             
-            getColor(sorted, 50, this.collectionArray, collectCount, visualizerCtx, 10, 350);
-            getColor(sorted, 51, this.collectionArray, collectCount, visualizerCtx, 50, 350);
-            getColor(sorted, 52, this.collectionArray, collectCount, visualizerCtx, 90, 350);
-            getColor(sorted, 53, this.collectionArray, collectCount, visualizerCtx, 130, 350);
-            getColor(sorted, 54, this.collectionArray, collectCount, visualizerCtx, 170, 350);
+            getColor(sorted, 230, this.collectionArray, collectCount, visualizerCtx, 10, 300);
+            getColor(sorted, 231, this.collectionArray, collectCount, visualizerCtx, 50, 300);
+            getColor(sorted, 232, this.collectionArray, collectCount, visualizerCtx, 90, 300);
+            getColor(sorted, 233, this.collectionArray, collectCount, visualizerCtx, 130, 300);
+            getColor(sorted, 234, this.collectionArray, collectCount, visualizerCtx, 170, 300);
             
-            getColor(sorted, 60, this.collectionArray, collectCount, visualizerCtx, 10, 400);
-            getColor(sorted, 61, this.collectionArray, collectCount, visualizerCtx, 50, 400);
-            getColor(sorted, 62, this.collectionArray, collectCount, visualizerCtx, 90, 400);
-            getColor(sorted, 63, this.collectionArray, collectCount, visualizerCtx, 130, 400);
-            getColor(sorted, 64, this.collectionArray, collectCount, visualizerCtx, 170, 400);
+            getColor(sorted, 240, this.collectionArray, collectCount, visualizerCtx, 10, 350);
+            getColor(sorted, 241, this.collectionArray, collectCount, visualizerCtx, 50, 350);
+            getColor(sorted, 242, this.collectionArray, collectCount, visualizerCtx, 90, 350);
+            getColor(sorted, 243, this.collectionArray, collectCount, visualizerCtx, 130, 350);
+            getColor(sorted, 244, this.collectionArray, collectCount, visualizerCtx, 170, 350);
             
-            getColor(sorted, 70, this.collectionArray, collectCount, visualizerCtx, 10, 450);
-            getColor(sorted, 71, this.collectionArray, collectCount, visualizerCtx, 50, 450);
-            getColor(sorted, 72, this.collectionArray, collectCount, visualizerCtx, 90, 450);
-            getColor(sorted, 73, this.collectionArray, collectCount, visualizerCtx, 130, 450);
-            getColor(sorted, 74, this.collectionArray, collectCount, visualizerCtx, 170, 450);
-            
-            
+            //90~170
             getColor(sorted, 90, this.collectionArray, collectCount, visualizerCtx, 240, 50);
             getColor(sorted, 91, this.collectionArray, collectCount, visualizerCtx, 280, 50);
             getColor(sorted, 92, this.collectionArray, collectCount, visualizerCtx, 320, 50);
@@ -466,6 +509,30 @@
             getColor(sorted, 132, this.collectionArray, collectCount, visualizerCtx, 320, 250);
             getColor(sorted, 133, this.collectionArray, collectCount, visualizerCtx, 360, 250);
             getColor(sorted, 134, this.collectionArray, collectCount, visualizerCtx, 400, 250);
+            
+            getColor(sorted, 140, this.collectionArray, collectCount, visualizerCtx, 240, 300);
+            getColor(sorted, 141, this.collectionArray, collectCount, visualizerCtx, 280, 300);
+            getColor(sorted, 142, this.collectionArray, collectCount, visualizerCtx, 320, 300);
+            getColor(sorted, 143, this.collectionArray, collectCount, visualizerCtx, 360, 300);
+            getColor(sorted, 144, this.collectionArray, collectCount, visualizerCtx, 400, 300);
+            
+            getColor(sorted, 150, this.collectionArray, collectCount, visualizerCtx, 240, 350);
+            getColor(sorted, 151, this.collectionArray, collectCount, visualizerCtx, 280, 350);
+            getColor(sorted, 152, this.collectionArray, collectCount, visualizerCtx, 320, 350);
+            getColor(sorted, 153, this.collectionArray, collectCount, visualizerCtx, 360, 350);
+            getColor(sorted, 154, this.collectionArray, collectCount, visualizerCtx, 400, 350);
+            
+            getColor(sorted, 160, this.collectionArray, collectCount, visualizerCtx, 240, 400);
+            getColor(sorted, 161, this.collectionArray, collectCount, visualizerCtx, 280, 400);
+            getColor(sorted, 162, this.collectionArray, collectCount, visualizerCtx, 320, 400);
+            getColor(sorted, 163, this.collectionArray, collectCount, visualizerCtx, 360, 400);
+            getColor(sorted, 164, this.collectionArray, collectCount, visualizerCtx, 400, 400);
+            
+            getColor(sorted, 170, this.collectionArray, collectCount, visualizerCtx, 240, 450);
+            getColor(sorted, 171, this.collectionArray, collectCount, visualizerCtx, 280, 450);
+            getColor(sorted, 172, this.collectionArray, collectCount, visualizerCtx, 320, 450);
+            getColor(sorted, 173, this.collectionArray, collectCount, visualizerCtx, 360, 450);
+            getColor(sorted, 174, this.collectionArray, collectCount, visualizerCtx, 400, 450);
             
         }.bind(this),false);
         

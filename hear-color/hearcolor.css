@@ -1,0 +1,130 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#basecamp{
+    position: absolute;
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    min-height: 500px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #212121;
+}
+#fileWrapper{
+    width: 250px;
+    height: 70px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #673AB7;
+    border: 1.5px solid #D1C4E9;
+    border-radius: 5px;
+    opacity: 0.7;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+}
+/*
+#fileWrapper:before, #fileWrapper:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    z-index: -1;
+}
+
+#fileWrapper:before{
+    background-color: #7C4DFF;
+    left: -5px;
+    top: -5px;
+}
+#fileWrapper:hover:before{
+    left: 0;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+#fileWrapper:after{
+    background-color: #512DA8;
+    left: 5px;
+    top: 5px;
+}
+#fileWrapper:hover:after{
+    left: 0;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+}
+*/
+
+#fileWrapper span{
+    font-weight: 100;
+    font-size: 18px;
+    color: rgb(240,240,240);
+    position: absolute;
+    display: block;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+input{
+    width: 250px;
+    height: 70px;
+    opacity: 0;
+    z-index: 100;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+#hearcolor{
+    position: absolute;
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    min-height: 500px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #212121;
+    display: none;
+}
+#hearcolor button{
+    font-weight: 100;
+    font-size: 15px;
+    width: 250px;
+    height: 70px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1.5px solid #673AB7;
+    border-radius: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+#hearcolor button:hover{
+    border: 2.5px solid #ffffff;
+    color: #ffffff;
+    background-color: transparent;
+}

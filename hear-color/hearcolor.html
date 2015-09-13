@@ -3,17 +3,22 @@
         <meta charset="utf-8">
         <title>hear-color</title>
         <link rel="icon" href="./assets/image/favicon.ico">
+        <link rel="stylesheet" href="./reset.css">
+        <link rel="stylesheet" href="./hearcolor.css">
     </head>
     <body>
-<!--        이후 색상정보를 이용한 navigator로 만들기 -->
-        <nav></nav>
-<!--        file upload / visualizer with canvas 포함.-->
-        <article>
-            <input type="file" accept="audio/x-mpeg">
-            <div id="visualizer"></div>
+        <article id="basecamp">
+            <div id="fileWrapper">
+             <span>upload a song</span>
+            </div>
+            <input type="file" accept="audio/x-mpeg"> 
+        </article>
+        <article id="hearcolor">
+            <button>ready to play</button>
+            <canvas id="visualizer"></canvas>
         </article>
         <script src="jquery-2.1.4.js"></script>
-        <script src="../library/audioHelper_jquery.js"></script>
+        <script src="../library/audioHelper_data.js"></script>
         <script src="hearcolor.js"></script>
     </body>
 </html>
