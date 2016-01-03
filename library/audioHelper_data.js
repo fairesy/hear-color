@@ -163,6 +163,14 @@
         //HSV로 매핑한 값은 RGB로 변환.
         var rgb = HSVtoRGB(actualHue,Math.round(saturation), arrangedValue);
         
+        //testing@160103 : remove after test
+        var div = document.createElement("div");
+        div.style.backgroundColor = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+        div.style.width = div.style.height = 100;
+        document.getElementById("hearcolor").appendChild(div);
+        //$("#hearcolor").append("<div style='width:100;height:100;background-color:"+"rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"+"></div>");
+        //document.getElementsByTagName("body")[0].insertAdjacentHTML("afterend", "<div style='width:100;height:100;background-color:"+"rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"+"></div>");
+        
         return "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
     }
     
@@ -276,6 +284,8 @@
 //            getColor(sorted, 72, this.collectionArray, collectCount, visualizerCtx, 90, 450);
 //            getColor(sorted, 73, this.collectionArray, collectCount, visualizerCtx, 130, 450);
 //            getColor(sorted, 74, this.collectionArray, collectCount, visualizerCtx, 170, 450);
+            
+            console.log(getColor(sorted, 180, this.collectionArray, collectCount, visualizerCtx, 10, 50));
             
             getColor(sorted, 180, this.collectionArray, collectCount, visualizerCtx, 10, 50);
             getColor(sorted, 181, this.collectionArray, collectCount, visualizerCtx, 50, 50);

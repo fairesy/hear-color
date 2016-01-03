@@ -23,6 +23,11 @@ $("input").on("change",function(){
         $("#hearcolor").css("background-color", "#000000");
         hearcolorVisualizer();
     });
+    
+    audio.addEventListener("ended", function(){
+        //alert("end!!");
+        
+    });
 });
 
 //visualizer : 전체 수정 필요
@@ -57,6 +62,9 @@ function hearcolorVisualizer(){
     var xSpeed = 1; 
     var ySpeed = 1;
     function particle() {
+        
+        var colors = ["242,41,41", "222,80,80", "247,111,111", "255,145,145", "252,199,199"];
+        
         this.r = radius;
 
         var innerR = Math.round(Math.random()*130) + 1; //1~130까지 랜덤 정수
@@ -68,9 +76,11 @@ function hearcolorVisualizer(){
         this.ix = xSpeed * (Math.random() < 0.5 ? -1 : 1); //positive or negative
         // this.iy = ySpeed * (Math.random() < 0.5 ? -1 : 1); //positive or negative
 
-        this.alpha = 1;
-        this.color = "rgba(255,0,0," + this.alpha + ")";
-//        this.color = "rgba(255,255,255,0.9)";
+        //this.alpha = 1;
+        this.color = "rgba("+colors[Math.floor(Math.random() * 6)]+",1)"; //동그라미 색 정하기. 배열에서 랜덤.
+        //console.log(colors[Math.random()*4]);
+        //debugger;
+        //this.color = "rgba(255,255,255,1)";
     }
 
     for(var i=0; i<howMany; i++){
@@ -85,6 +95,7 @@ function hearcolorVisualizer(){
         
         for(var i=0; i<particles.length ; i++){
             context.fillStyle = particles[i].color;
+            
             if(particles[i].x>600 ||particles[i].x<100){
                 particles[i].ix = -1 * particles[i].ix;
                 // particles[i].iy = -1 * particles[i].iy;
